@@ -18,7 +18,8 @@ def index(request):
 def post_create(request):
 
     if request.method == 'POST':
-        form=PostForm(request.POST,request.FILES) 
+        form=PostForm(request.POST,request.FILES)
+        if form.is_valid():
             post=form.save(commit=False)
             post.pub_date=timezone.now()
             post.save()
